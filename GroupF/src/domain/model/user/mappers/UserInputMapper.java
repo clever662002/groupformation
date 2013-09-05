@@ -1,4 +1,4 @@
-package domain.model.member.mappers;
+package domain.model.user.mappers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,8 +14,8 @@ import services.groupmembership.GroupMembershipFinder;
 
 import domain.model.group.IGroup;
 
-public class MemberInputMapper {
-
+public class UserInputMapper {
+	
 	public static List<IUser> buildCollection(ResultSet rs, String idString)
 			throws SQLException, MapperException, DomainObjectCreationException {
 		ArrayList<IUser> l = new ArrayList<IUser>();
