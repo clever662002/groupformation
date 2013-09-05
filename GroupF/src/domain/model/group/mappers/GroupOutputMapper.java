@@ -1,8 +1,6 @@
 package domain.model.group.mappers;
 
 import java.sql.SQLException;
-import java.util.List;
-
 import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.mapper.GenericOutputMapper;
 import org.dsrg.soenea.domain.mapper.LostUpdateException;
@@ -30,7 +28,7 @@ public class GroupOutputMapper extends GenericOutputMapper<Long, Group> {
 	@Override
 	public void insert(Group group) throws MapperException {
 		try {
-			GroupTDG.insert(group.getId(), group.getVersion(), group.getName());
+			GroupTDG.insert(group.getId(), group.getVersion(), group.getName(), group.getDescription());
 		} catch (SQLException e) {
 			throw new MapperException(
 					"Could not insert Group " + group.getId(), e);
@@ -41,7 +39,7 @@ public class GroupOutputMapper extends GenericOutputMapper<Long, Group> {
 	public void update(Group group) throws MapperException {
 		try {
 			int count = GroupTDG.update(group.getId(), group.getVersion(),
-					group.getName());
+					group.getName(), group.getDescription());
 			if (count == 0)
 				throw new LostUpdateException("GroupTDG: id " + group.getId()
 						+ " version " + group.getVersion());

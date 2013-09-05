@@ -12,6 +12,10 @@ public interface IGroup extends IDomainObject<Long> {
 	
 	public abstract void setName(String name);
 	
+	public abstract String getDescription();
+	
+	public abstract void setDescription(String description);
+	
 	public List<IGroupMembership> getMembers();
 	
 	public void setMembers(List<IGroupMembership> members);

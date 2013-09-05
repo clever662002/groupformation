@@ -76,12 +76,12 @@ public class GroupInputMapper {
 	}
 
 	private static Group getGroup(ResultSet rs) throws SQLException, MapperException {
-		long id = rs.getLong("g.group_id");
+		long id = rs.getLong("g.id");
 		IGroup thisGroup = new GroupProxy(id);
 		Group result = null;
 		try {
 			result = GroupFactory.createClean(id, rs.getLong("g.version"),
-					rs.getString("g.name"),
+					rs.getString("g.name"), rs.getString("g.description"),
 					(new MembershipListProxy(thisGroup)).getActualList());
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -16,6 +16,7 @@ public class GroupTDG {
 		"id BIGINT,"+
 		"version int,"+
 		"name varchar(128),"+
+		"description varchar(256),"+
 		"PRIMARY KEY(id)"+
 		") ENGINE=InnoDB;";
 	 
@@ -23,10 +24,10 @@ public class GroupTDG {
 		"DROP TABLE IF EXISTS " + TABLE + ";";
 
 	public static final String INSERT = 
-		"INSERT INTO " + TABLE + " (id,version,name) VALUES (?,?,?);";
+		"INSERT INTO " + TABLE + " (id,version,name, description) VALUES (?,?,?,?);";
 	
 	public static final String UPDATE = 
-		"UPDATE " + TABLE + " SET name=?, version=version+1 WHERE id=? AND version=?;";
+		"UPDATE " + TABLE + " SET name=?, description=?, version=version+1 WHERE id=? AND version=?;";
 	
 	public static final String DELETE = 
 		"DELETE FROM " + TABLE + " WHERE id=? AND version=?;";
@@ -39,20 +40,22 @@ public class GroupTDG {
 		SQLLogger.processUpdate(DbRegistry.getDbConnection().createStatement(), DROP_TABLE);
 	}
 
-	public static void insert(long id, long version, String name) throws SQLException {
+	public static void insert(long id, long version, String name, String description) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(INSERT);
 		ps.setLong(1, id);
 		ps.setLong(2, version);
 		ps.setString(3, name);
+		ps.setString(4, description);
 		ps.executeUpdate();
 		ps.close();
 	}
 
-	public static int update(long id, long version, String name) throws SQLException {
+	public static int update(long id, long version, String name, String description) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(UPDATE);
 		ps.setString(1, name);
-		ps.setLong(2, id);
-		ps.setLong(3, version);		
+		ps.setString(2,  description);
+		ps.setLong(3, id);
+		ps.setLong(4, version);		
 		int count = ps.executeUpdate();
 		ps.close();
 		return count;

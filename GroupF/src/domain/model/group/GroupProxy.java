@@ -37,6 +37,16 @@ public class GroupProxy extends DomainObjectProxy<Long, Group> implements IGroup
 	public void setName(String name) {
 		getInnerObject().setName(name);
 	}
+	
+	@Override
+	public String getDescription() {
+		return getInnerObject().getDescription();
+	}
+	
+	@Override
+	public void setDescription(String description) {
+		getInnerObject().setDescription(description);
+	}
 
 	@Override
 	public String toString() {

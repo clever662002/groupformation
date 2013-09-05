@@ -11,14 +11,14 @@ import org.dsrg.soenea.service.threadLocal.DbRegistry;
 public class GroupFinder {
 	
 	public static String SELECT_BY_ID_SQL = 
-		"SELECT g.id,g.version,g.name FROM " + GroupTDG.TABLE + " AS g "+
+		"SELECT g.id,g.version,g.name,g.description FROM " + GroupTDG.TABLE + " AS g "+
 		"WHERE g.id=?;";
 			   
 	public static String SELECT_ALL_SQL = 
 	    "SELECT g.id FROM " + GroupTDG.TABLE + " AS g;";
 			  
 	public static String SELECT_BY_NAME_SQL = 
-	    "SELECT g.id,g.version,g.name FROM " + GroupTDG.TABLE + " AS g "+
+	    "SELECT g.id,g.version,g.name,g.description FROM " + GroupTDG.TABLE + " AS g "+
 	    "WHERE g.name=?;";
 			 
 	public static ResultSet find(long id) throws SQLException{

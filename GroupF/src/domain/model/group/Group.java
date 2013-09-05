@@ -8,11 +8,13 @@ import domain.model.groupmembership.IGroupMembership;
 
 public class Group extends DomainObject<Long> implements IGroup {
 	private String name;
+	private String description;
 	private List<IGroupMembership> members;
 
-	protected Group(Long id, long version, String name, List<IGroupMembership> members) {
+	protected Group(Long id, long version, String name, String description, List<IGroupMembership> members) {
 		super(id, version);
 		this.name = name;
+		this.description = description;
 		this.members = members;
 	}
 
@@ -22,6 +24,14 @@ public class Group extends DomainObject<Long> implements IGroup {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public List<IGroupMembership> getMembers() {
