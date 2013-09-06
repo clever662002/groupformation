@@ -43,12 +43,12 @@ public class GroupMembershipTDG {
 				DROP_TABLE);
 	}
 
-	public static int insert(long id, long version, Long member, Long group,
+	public static int insert(long id, int version, Long member, Long group,
 			Integer status, Long lastUpdated) throws SQLException {
 		Connection con = DbRegistry.getDbConnection();
 		PreparedStatement ps = con.prepareStatement(INSERT_BYID_SQL);
 		ps.setLong(1, id);
-		ps.setLong(2, version);
+		ps.setInt(2, version);
 		ps.setLong(3, member);
 		ps.setLong(4, group);
 		ps.setInt(5, status);
@@ -58,7 +58,7 @@ public class GroupMembershipTDG {
 		return count;
 	}
 
-	public static int update(long id, long version, Long member, Long group,
+	public static int update(long id, int version, Long member, Long group,
 			Integer status, Long lastUpdated) throws SQLException {
 		Connection con = DbRegistry.getDbConnection();
 		PreparedStatement ps = con.prepareStatement(UPDATE_BYID_SQL);
@@ -67,17 +67,17 @@ public class GroupMembershipTDG {
 		ps.setInt(3, status);
 		ps.setLong(4, lastUpdated);
 		ps.setLong(5, id);
-		ps.setLong(6, version);
+		ps.setInt(6, version);
 		int count = SQLLogger.processUpdate(ps);
 		ps.close();
 		return count;
 	}
 
-	public static int delete(long id, long version) throws SQLException {
+	public static int delete(long id, int version) throws SQLException {
 		Connection con = DbRegistry.getDbConnection();
 		PreparedStatement ps = con.prepareStatement(DELETE_BYID_SQL);
 		ps.setLong(1, id);
-		ps.setLong(2, version);
+		ps.setInt(2, version);
 		int count = SQLLogger.processUpdate(ps);
 		return count;
 	}

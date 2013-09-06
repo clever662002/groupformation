@@ -17,13 +17,13 @@ public class GroupMembershipFactory {
 	public static GroupMembership createNew(IUser member, IGroup group,
 			MembershipStatus status, Calendar lastUpdated) throws SQLException, MissingMappingException, MapperException {
 		GroupMembership result = new GroupMembership(
-				GroupMembershipTDG.maxId(), 01, member, group, status,
+				GroupMembershipTDG.maxId(), 0, member, group, status,
 				lastUpdated);
 		UoW.getCurrent().registerNew(result);
 		return result;
 	}
 
-	public static GroupMembership createClean(long id, long version,
+	public static GroupMembership createClean(long id, int version,
 			IUser member, IGroup group, MembershipStatus status,
 			Calendar lastUpdated) throws SQLException {
 		GroupMembership result = new GroupMembership(id, version, member,

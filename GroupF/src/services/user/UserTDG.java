@@ -44,11 +44,11 @@ public class UserTDG {
 			SQLLogger.processUpdate(DbRegistry.getDbConnection().createStatement(), DROP_TABLE);
 		}
 		
-		public static void insert(long id, long version, String userName, String firstName, String lastName, 
+		public static void insert(long id, int version, String userName, String firstName, String lastName, 
 				String password, String role) throws SQLException {
 			PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(INSERT);
 			ps.setLong(1, id);
-			ps.setLong(2, version);
+			ps.setInt(2, version);
 			ps.setString(3, userName);
 			ps.setString(4, firstName);
 			ps.setString(5, lastName);
@@ -58,10 +58,10 @@ public class UserTDG {
 			ps.close();
 		}
 		
-		public static int delete(long id, long version) throws SQLException {
+		public static int delete(long id, int version) throws SQLException {
 			PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(DELETE);
 			ps.setLong(1, id);
-			ps.setLong(2, version);
+			ps.setInt(2, version);
 			int count = ps.executeUpdate();
 			ps.close();
 			return count;

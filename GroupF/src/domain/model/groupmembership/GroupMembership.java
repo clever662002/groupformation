@@ -1,3 +1,4 @@
+
 package domain.model.groupmembership;
 
 import java.util.Calendar;
@@ -15,7 +16,7 @@ public class GroupMembership extends DomainObject<Long> implements
 	private MembershipStatus status;
 	private Calendar lastUpdated;
 
-	public GroupMembership(Long id, long version, IUser member, IGroup group,
+	public GroupMembership(Long id, int version, IUser member, IGroup group,
 			MembershipStatus status, Calendar lastUpdated) {
 		super(id, version);
 		this.member = member;

@@ -61,13 +61,19 @@ public class GroupMembershipInputMapper {
 					"The record for this GroupMembership id doesn't exist");
 		return getGroupMembership(rs);
 	}
+	
+	public static GroupMembership findByMember(long id) throws SQLException,
+			MapperException, DomainObjectCreationException {
+		ResultSet rs = GroupMembershipFinder.findByMember(id);
+		return getGroupMembership(rs);
+	}
 
 	private static GroupMembership getGroupMembership(ResultSet rs)
 			throws SQLException, MapperException, DomainObjectCreationException {
 		Calendar cal = Calendar.getInstance();
 		cal.setTimeInMillis(rs.getLong("gm.lastUpdated"));
 		GroupMembership result = GroupMembershipFactory.createClean(
-				rs.getLong("gm.id"), rs.getLong("gm.version"),
+				rs.getLong("gm.id"), rs.getInt("gm.version"),
 				new UserProxy(rs.getLong("gm.member")),
 				new GroupProxy(rs.getLong("gm._group")),
 				MembershipStatus.values()[rs.getInt("gm.status")], cal);

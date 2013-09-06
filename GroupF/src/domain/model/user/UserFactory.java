@@ -11,12 +11,12 @@ import services.user.UserTDG;
 public class UserFactory {
 	public static User createNew(String userName, String firstName, String lastName, String password, String role)
 			throws SQLException, MissingMappingException, MapperException {
-		User result = new User(UserTDG.maxId(), 0l, userName, firstName, lastName, password, role);
+		User result = new User(UserTDG.maxId(), 0, userName, firstName, lastName, password, role);
 		UoW.getCurrent().registerNew(result);
 		return result;
 	}
 
-	public static User createClean(long id, long version, String userName, String firstName, 
+	public static User createClean(long id, int version, String userName, String firstName, 
 			String lastName, String password, String role) throws SQLException {
 		User result = new User(id, version, userName, firstName, lastName, password, role);
 		UoW.getCurrent().registerClean(result);

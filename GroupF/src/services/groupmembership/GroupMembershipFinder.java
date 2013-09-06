@@ -14,6 +14,10 @@ public class GroupMembershipFinder {
 	public static String SELECT_BY_ID_SQL = "SELECT gm.id,gm.version,gm.member,"
 			+ "gm._group,gm.status,gm.lastUpdated FROM "
 			+ GroupMembershipTDG.TABLE + " AS gm " + "WHERE gm.id=?;";
+	
+	public static String SELECT_BY_MEMBER_SQL = "SELECT gm.id,gm.version,gm.member,"
+			+ "gm._group,gm.status,gm.lastUpdated FROM "
+			+ GroupMembershipTDG.TABLE + " AS gm " + "WHERE gm.member=?;";
 
 	public static String SELECT_ALL_SQL = "SELECT gm.id FROM "
 			+ GroupMembershipTDG.TABLE + " AS gm;";
@@ -26,6 +30,14 @@ public class GroupMembershipFinder {
 		PreparedStatement ps = (PreparedStatement) con
 				.prepareStatement(SELECT_BY_ID_SQL);
 		ps.setLong(1, id);
+		return SQLLogger.processQuery(ps);
+	}
+	
+	public static ResultSet findByMember(long member) throws SQLException {
+		Connection con = DbRegistry.getDbConnection();
+		PreparedStatement ps = (PreparedStatement) con
+				.prepareStatement(SELECT_BY_MEMBER_SQL);
+		ps.setLong(1, member);
 		return SQLLogger.processQuery(ps);
 	}
 

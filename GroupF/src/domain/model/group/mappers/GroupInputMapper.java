@@ -80,7 +80,7 @@ public class GroupInputMapper {
 		IGroup thisGroup = new GroupProxy(id);
 		Group result = null;
 		try {
-			result = GroupFactory.createClean(id, rs.getLong("g.version"),
+			result = GroupFactory.createClean(id, rs.getInt("g.version"),
 					rs.getString("g.name"), rs.getString("g.description"),
 					(new MembershipListProxy(thisGroup)).getActualList());
 		} catch (Exception e) {

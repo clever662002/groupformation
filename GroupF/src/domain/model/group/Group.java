@@ -11,7 +11,7 @@ public class Group extends DomainObject<Long> implements IGroup {
 	private String description;
 	private List<IGroupMembership> members;
 
-	protected Group(Long id, long version, String name, String description, List<IGroupMembership> members) {
+	protected Group(Long id, int version, String name, String description, List<IGroupMembership> members) {
 		super(id, version);
 		this.name = name;
 		this.description = description;
