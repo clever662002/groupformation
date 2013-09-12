@@ -10,7 +10,7 @@ import org.dsrg.soenea.service.threadLocal.DbRegistry;
 
 public class GroupMembershipTDG {
 
-	public static final String BASE_NAME = "groupf_GroupMembership";
+	public static final String BASE_NAME = "GroupMembership";
 	public final static String TABLE = DbRegistry.getTablePrefix() + BASE_NAME;
 
 	public final static String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
