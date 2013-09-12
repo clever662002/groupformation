@@ -73,7 +73,7 @@ public class GroupMembershipInputMapper {
 		Calendar cal = Calendar.getInstance();
 		cal.setTimeInMillis(rs.getLong("gm.lastUpdated"));
 		GroupMembership result = GroupMembershipFactory.createClean(
-				rs.getLong("gm.id"), rs.getInt("gm.version"),
+				rs.getLong("gm.id"), rs.getLong("gm.version"),
 				new UserProxy(rs.getLong("gm.member")),
 				new GroupProxy(rs.getLong("gm._group")),
 				MembershipStatus.values()[rs.getInt("gm.status")], cal);

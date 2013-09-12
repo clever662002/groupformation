@@ -10,7 +10,7 @@ public class User extends DomainObject<Long>{
 	private String password;
 	private String role;
 	
-	protected User(Long id, int version, String userName, String firstName, String lastName, String password, String role) {
+	protected User(Long id, long version, String userName, String firstName, String lastName, String password, String role) {
 		super(id, version);
 		this.userName = userName;
 		this.firstName = firstName;

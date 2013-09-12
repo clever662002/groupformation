@@ -40,31 +40,31 @@ public class GroupTDG {
 		SQLLogger.processUpdate(DbRegistry.getDbConnection().createStatement(), DROP_TABLE);
 	}
 
-	public static void insert(long id, int version, String name, String description) throws SQLException {
+	public static void insert(long id, long version, String name, String description) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(INSERT);
 		ps.setLong(1, id);
-		ps.setInt(2, version);
+		ps.setLong(2, version);
 		ps.setString(3, name);
 		ps.setString(4, description);
 		ps.executeUpdate();
 		ps.close();
 	}
 
-	public static int update(long id, int version, String name, String description) throws SQLException {
+	public static int update(long id, long version, String name, String description) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(UPDATE);
 		ps.setString(1, name);
 		ps.setString(2,  description);
 		ps.setLong(3, id);
-		ps.setInt(4, version);		
+		ps.setLong(4, version);		
 		int count = ps.executeUpdate();
 		ps.close();
 		return count;
 	}
 
-	public static int delete(long id, int version) throws SQLException {
+	public static int delete(long id, long version) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(DELETE);
 		ps.setLong(1, id);
-		ps.setInt(2, version);
+		ps.setLong(2, version);
 		int count = ps.executeUpdate();
 		ps.close();
 		return count;

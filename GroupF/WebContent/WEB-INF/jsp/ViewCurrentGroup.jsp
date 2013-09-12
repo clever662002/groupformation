@@ -11,11 +11,18 @@
 </head>
 <body>
   
+  	<c:choose>
+	<c:when test="${isGroupMember == \"false\"}">
+		<p>You are not in a group yet.</p>
+	</c:when>
+	<c:otherwise>
 	<div>
 		<h1>My Group</h1>
 		<p>Name: ${group.name} <br>
 		Description: ${group.description} </p>
 	</div>
+	</c:otherwise>
+	</c:choose>
 		
 </body>
 </html>

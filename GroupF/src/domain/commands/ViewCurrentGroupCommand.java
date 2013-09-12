@@ -34,10 +34,11 @@ public class ViewCurrentGroupCommand extends DomainCommand {
 			GroupMembership gm = GroupMembershipInputMapper.findByMember(userid);
 			if (gm == null)
 				helper.setRequestAttribute("isGroupMember", "false");
-			else
+			else {
 				helper.setRequestAttribute("isGroupMember", "true");
-			Group group = (Group) gm.getGroup();
-			helper.setRequestAttribute("group", group);
+				Group group = (Group) gm.getGroup();
+				helper.setRequestAttribute("group", group);
+			}
 		} catch (SQLException e) {
 			throw new CommandException(e);
 		} catch (DomainObjectCreationException e) {

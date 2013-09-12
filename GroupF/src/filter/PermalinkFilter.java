@@ -53,8 +53,7 @@ public class PermalinkFilter implements Filter {
 
 
 		String path = request.getPathInfo();	
-		//String path = request.getRequestURI();
-		System.out.println("path = " + path);
+
 		if (path == null)
 			return null;
 			
@@ -62,82 +61,12 @@ public class PermalinkFilter implements Filter {
 		//String command = null;
 		String command = "LoginDispatcher";
 
-		// don't know a better way to do this, but we could regular expression
-		String basePath = "/SOEN393c";
-		System.out.println("commandPath = " + path);
-
-		if (/*commandPath.equals(path)*/path.equals("/BrowseInvites")) {
-			// rewrite to actual URL
-			command = "BrowseInvitesDispatcher";
-		} else if (path.equals("/InviteUser")) {
-			command = "InviteUserDispatcher";
-		} else if (path.equals("/AcceptInvite")) {
-			command = "AcceptInviteDispatcher";
-		} else if (path.equals("/DeclineInvite")) {
-			command = "DeclineInviteDispatcher";
-		} else if (path.equals("/Login")) {
-			// rewrite to actual URL
-			command = "LoginDispatcher";
-		} else if (path.equals("/BrowseGroups")) {
+		if (path.equals("/BrowseGroups")) {
 			// rewrite to actual URL
 			command = "BrowseGroupsDispatcher";
-		} else if (path.equals("/BrowseMyGroup")) {
+		} else if (path.equals("/MyGroup")) {
 			// rewrite to actual URL
-			command = "BrowseMyGroupDispatcher";
-		} else if (path.equals("/CreateGroupForm")) {
-			// rewrite to actual URL
-			command = "CreateGroupFormDispatcher";
-		} else if (path.equals("/CreateGroup")) {
-			// rewrite to actual URL
-			command = "CreateGroupDispatcher";
-		} else if (path.equals("/Profile")) {
-			// rewrite to actual URL
-			command = "ProfileDispatcher";
-		} else if (path.equals("/Admin")) {
-			// rewrite to actual URL
-			command = "AddUserDispatcher";
-		} else if (path.equals("/Logout")) {
-			// rewrite to actual URL
-			command = "LogoutDispatcher";
-		}  else if (path.equals("/AddUser")) {
-			// rewrite to actual URL
-			command = "AddUserDispatcher";
-		}  else if (path.equals("/CSVUpload")) {
-			// rewrite to actual URL
-			command = "CSVDispatcher";
-
-		}  else if (path.contains("/RemoveGroup")){
-			Pattern pattern = Pattern.compile("^/RemoveGroup/(\\d+)$");
-			Matcher matcher = pattern.matcher(path);
-			if (matcher.find()) {
-				String idAsString = null;
-				command = "RemoveGroupDispatcher";
-				idAsString = matcher.group(1);
-				try {
-					//long id = Long.parseLong(idAsString);
-					request.setAttribute("id", idAsString);
-				} catch (NumberFormatException e) {
-					return null;
-				}
-			}
-		} else if (path.contains("/RemoveMember")){
-			Pattern pattern = Pattern.compile("^/RemoveMember/(\\d+)$");
-			Matcher matcher = pattern.matcher(path);
-			if (matcher.find()) {
-				String idAsString = null;
-				command = "RemoveMemberDispatcher";
-				idAsString = matcher.group(1);
-				try {
-					//long id = Long.parseLong(idAsString);
-					request.setAttribute("id", idAsString);
-				} catch (NumberFormatException e) {
-					return null;
-				}
-			}
-		} else if (path.equals("/EditMyGroup")){
-			
-			command = "EditGroupDispatcher";
-			
+			command = "ViewCurrentGroupDispatcher";
 		}else {
 
 			
@@ -147,7 +76,6 @@ public class PermalinkFilter implements Filter {
 			 
 		}
 
-		System.out.println("command = " + command);
 		return command;
 
 	}

@@ -14,12 +14,12 @@ import domain.model.groupmembership.IGroupMembership;
 public class GroupFactory {
 	public static Group createNew(String name, String description, List<IGroupMembership> members)
 			throws SQLException, MissingMappingException, MapperException {
-		Group result = new Group(GroupTDG.maxId(), 0, name, description, members);
+		Group result = new Group(GroupTDG.maxId(), 1, name, description, members);
 		UoW.getCurrent().registerNew(result);
 		return result;
 	}
 
-	public static Group createClean(long id, int version, String name, String description,
+	public static Group createClean(long id, long version, String name, String description,
 			List<IGroupMembership> members) throws SQLException {
 		Group result = new Group(id, version, name, description, members);
 		UoW.getCurrent().registerClean(result);
